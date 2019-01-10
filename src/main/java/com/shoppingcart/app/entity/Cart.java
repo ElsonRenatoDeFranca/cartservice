@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "CART")
@@ -26,7 +27,8 @@ public class Cart {
     @Column(name = "CART_DESCRIPTION", length = 50)
     private String cartDescription;
 
-    @OneToMany(mappedBy = "cartId", targetEntity = Product.class,fetch=FetchType.LAZY, cascade = CascadeType.ALL )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Product> products;
+
 
 }
