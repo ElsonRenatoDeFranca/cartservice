@@ -17,6 +17,8 @@ import java.util.List;
 
 @Entity(name = "CART")
 @Data
+@Getter
+@Setter
 public class Cart {
 
     @Id
@@ -30,5 +32,27 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Product> products;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCartDescription() {
+        return cartDescription;
+    }
+
+    public void setCartDescription(String cartDescription) {
+        this.cartDescription = cartDescription;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 }

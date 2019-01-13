@@ -7,6 +7,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.TrustStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,6 +25,7 @@ import javax.net.ssl.SSLContext;
  * Created by e068635 on 1/10/2019.
  */
 @Configuration
+@PropertySource("classpath:config/config.properties")
 public class RestTemplateConfig {
 
     @Bean
