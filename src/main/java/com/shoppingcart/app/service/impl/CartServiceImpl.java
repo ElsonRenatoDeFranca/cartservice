@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CartServiceImpl implements ICartService {
@@ -21,8 +18,6 @@ public class CartServiceImpl implements ICartService {
 
     @Autowired
     private IProductService productService;
-
-    private List<Product> products = new ArrayList<>();
 
     @Override
     public Cart retrieveCartById(Long id) {
