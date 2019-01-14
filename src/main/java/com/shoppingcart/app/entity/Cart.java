@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class Cart {
     @Column(name = "CART_DESCRIPTION", length = 50)
     private String cartDescription;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Product> products;
 }

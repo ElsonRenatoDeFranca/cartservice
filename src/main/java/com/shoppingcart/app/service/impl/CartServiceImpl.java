@@ -42,10 +42,8 @@ public class CartServiceImpl implements ICartService {
         Cart cart = retrieveCartById(Long.parseLong(cartId));
 
         if(productResult != null){
-            products.add(productResult);
+            cart.getProducts().add(productResult);
         }
-        cart.setProducts(products);
-
         cartRepository.save(cart);
 
         return cart;
