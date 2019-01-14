@@ -27,7 +27,6 @@ public class Cart {
     @Column(name = "CART_DESCRIPTION", length = 50)
     private String cartDescription;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Product> products;
 }
