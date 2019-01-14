@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartServiceImpl implements ICartService {
@@ -22,17 +23,13 @@ public class CartServiceImpl implements ICartService {
     @Autowired
     private CartRepository cartRepository;
 
-    //@Autowired
-    //public RestTemplate restTemplate;
-
-    //private static final String PRODUCT_URL = "https://product-service.apps.dev.pcf-aws.com/products/";
-
     @Autowired
     private IProductService productService;
 
     @Override
     public Cart retrieveCartById(Long id) {
-        return cartRepository.findById(id).get();
+        Optional<Cart> cart = cartRepository.findById(id);
+        return cart.get();
     }
 
     @Override
@@ -43,43 +40,16 @@ public class CartServiceImpl implements ICartService {
     @Override
     public Cart addProduct(String cartId, Product product) {
 
-        //ResponseEntity<Product> responseEntity = this.restTemplate.exchange(PRODUCT_URL + product.getId(),HttpMethod.GET, new HttpEntity<>(new HttpHeaders()), Product.class);
-        //Product productResult = responseEntity.getBody();
         List<Product> products = new ArrayList<>();
         Product productResult = productService.getProductById(Long.parseLong(product.getId()));
-
         Cart cart = retrieveCartById(Long.parseLong(cartId));
-       // Cart cart = addProductToCart(productResult, cartId);
-
 
         if(productResult != null){
             products.add(productResult);
         }
         cart.setProducts(products);
 
-
         return cart;
     }
-
-    /*
-    private Cart addProductToCart(Product product, String cartId){
-
-        List<Product> products = new ArrayList<>();
-        Cart cart = retrieveCartById(Long.parseLong(cartId));
-
-
-        if(product != null){
-            products.add(product);
-        }
-        cart.setProducts(products);
-
-        return cart;
-    }
-    */
-
-    /*public Product findRemoteProduct(Long productId) {
-            Optional<Product> productRemote = this.productRestClient.getResource(productURL + productId);
-            return productRemote.orElseThrow( () -> new ResourceNotFoundException("Product not found", null));
-    }*/
 
 }

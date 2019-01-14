@@ -17,7 +17,6 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     public RestTemplate restTemplate;
 
-    //private static final String PRODUCT_URL = "https://product-service.apps.dev.pcf-aws.com/products/";
     @Value("${product.url}")
     private String remoteProductUrl;
 
