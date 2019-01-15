@@ -3,6 +3,9 @@ package com.shoppingcart.app.service;
 
 import com.shoppingcart.app.entity.Cart;
 import com.shoppingcart.app.entity.Product;
+import com.shoppingcart.app.exception.CartNotFoundException;
+import com.shoppingcart.app.exception.ProductNotFoundException;
+import org.springframework.http.ResponseEntity;
 
 public interface ICartService {
 
@@ -12,14 +15,14 @@ public interface ICartService {
      * @param id
      * @return
      */
-    Cart retrieveCartById(Long id);
+    Cart retrieveCartById(Long id)  throws CartNotFoundException;
 
 
     /**
      *
      * @param cart
      */
-    void createCart(Cart cart);
+    Cart createCart(Cart cart);
 
 
     /**
@@ -27,7 +30,7 @@ public interface ICartService {
      * @param cartId
      * @param product
      */
-    Cart addProduct(String cartId, Product product);
+    Cart addProduct(String cartId, Product product) throws ProductNotFoundException, CartNotFoundException;
 
 
 }
